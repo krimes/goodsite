@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '@/pages/HomePage.vue';
+import { loadLanguageAsync } from "@/services/i18n";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,12 +13,29 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../pages/AboutPage.vue'),
+    },
+    {
+      path: '/category',
+      name: 'category',
+      component: () => import('../pages/CategoryPage.vue'),
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('../pages/SignupPage.vue'),
+    },
+    {
+      path: '/signin',
+      name: 'signin',
+      component: () => import('../pages/SigninPage.vue'),
     }
   ]
+});
+
+router.beforeEach((to, from, next) => {
+  const lang = to.params.lang
+  loadLanguageAsync(lang).then(() => next())
 })
 
 export default router
