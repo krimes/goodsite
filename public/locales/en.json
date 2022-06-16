@@ -1,0 +1,27 @@
+{
+  "app": {
+    "ok": "Ok",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "forgot_password": "Forgot password"
+  },
+  "user": {
+    "email": "Email",
+    "password": "Password",
+    "nickname": "Nick name",
+    "avatar": "Avatar"
+  },
+  "pages": {
+    "signin": {
+      "title": "Sign in",
+      "subtitle": "Please, enter your creditionals",
+      "remember_me": "Remember me"
+    },
+    "signup": {
+      "title": "Sign up"
+    }
+  }
+}

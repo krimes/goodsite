@@ -1,0 +1,104 @@
+@use 'variables.scss' as vars;
+
+/**
+ * Gradient mixins
+ * to use mixin in your class do:
+ *   @include gradient--white-shade;
+ */
+@mixin gradient--white-shade {
+  background: linear-gradient(90deg, #FFFFFF 49.17%, rgba(255, 255, 255, 0) 100%);
+}
+@mixin gradient--light-gray {
+  background: linear-gradient(90deg, #F3F7F9 49.17%, rgba(243, 247, 249, 0) 100%);
+}
+
+
+/**
+ * Shadow mixins
+ */
+@mixin shadow--light-1 {
+  box-shadow: 0px 0px 4px rgba(44, 62, 70, 0.2);
+}
+@mixin shadow--light-2 {
+  box-shadow: 0px 0px 20px rgba(44, 62, 70, 0.2);
+}
+
+
+// Disable user select
+@mixin no-selection {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+
+/**
+ * Old design mixin
+ */
+@mixin old-design {
+  color: #333;
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 14px;
+  line-height: 1 !important;
+}
+
+@mixin default-hover {
+  background: vars.$color--default-hover;
+  border: 1px solid vars.$color--focus-outline;
+}
+
+@mixin default-active {
+  border-color: vars.$color--default-active;
+  background: vars.$color--default;
+  box-shadow: unset;
+  outline: 0 !important;
+}
+
+@mixin default-outline {
+  border-radius: vars.$base-border-radius;
+  outline: vars.$base-outline;
+  outline-offset: vars.$base-padding;
+}
+
+@mixin vertical-scrollbar {
+  width: 4px;
+  background: vars.$color--white;
+}
+
+@mixin vertical-scrollbar-thumb {
+  background: vars.$color--light-gray;
+  border-radius: 100px;
+}
+
+/**
+Text formats
+ */
+@mixin display-medium {
+  font-family: Commissioner, sans-serif;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+@mixin text-x-small {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@mixin text-small {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+@mixin text-medium {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin text-large {
+  font-size: 18px;
+  line-height: 27px;
+}

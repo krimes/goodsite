@@ -1,0 +1,51 @@
+.post-card {
+  padding: 0 0 30px 0;
+
+  .post-picture {
+    position: relative;
+    overflow-y: hidden;
+    height: 240px;
+    .post-runtime {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      display: inline-block;
+      border-radius: 3px;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 10;
+      padding: 3px 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+    }
+    img {
+      display: block;
+      width: auto;
+      max-width: 100%;
+    }
+  }
+  .post-author {
+    padding: 10px 0 0 5px;
+  }
+  .post-info {
+    padding: 10px 0 5px;
+    h4 {
+      font-weight: 700;
+      font-size: 18px;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+  .post-summary {
+    padding: 5px 0;
+    font-size: 13px;
+    .post-metric {
+      display: inline-block;
+      padding: 0 10px 0 0;
+      * {
+        vertical-align: middle;
+      }
+    }
+  }
+}

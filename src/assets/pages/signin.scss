@@ -1,0 +1,16 @@
+.signin-form-wrapper {
+  max-width: 350px;
+  margin: 50px auto;
+  box-shadow: 0 10px 30px 0 #eee, 0 5px 20px 0 #ddd;
+  padding: 15px;
+  border-radius: 5px;
+
+  .signin-form {
+    padding: 15px 0 0 0;
+  }
+
+  .form-footer {
+    border-top: 1px solid #ddd;
+    padding: 15px 0 0 0;
+  }
+}

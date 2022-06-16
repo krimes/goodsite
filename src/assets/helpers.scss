@@ -1,0 +1,64 @@
+@use './variables'   as vars;
+@use './mixins.scss' as mix;
+
+.w-max {
+  width: 100%;
+}
+
+.clickable {cursor: pointer;}
+.text-bold {font-weight: bold !important;}
+.text-strong {font-weight: 600 !important;}
+.text-normal {font-weight: normal !important;}
+
+.text-left {text-align: left !important;}
+.text-right {text-align: right !important;}
+.text-center {text-align: center !important;}
+
+.text-uppercase {text-transform: uppercase;}
+.text-capitalize {text-transform: capitalize;}
+.text-faded {opacity: 0.7;}
+.text-striked {text-decoration: line-through;}
+
+.pull-right {float: right;}
+.pull-left {float: left;}
+
+// Padding & margin helpers
+@for $i from 0 through 10 {
+  .p-#{$i}  {padding:        vars.$base-padding * $i !important}
+  .py-#{$i}  {padding-top: vars.$base-padding * $i !important; padding-bottom: vars.$base-padding * $i !important}
+  .px-#{$i}  {padding-left: vars.$base-padding * $i !important; padding-right: vars.$base-padding * $i !important}
+  .pt-#{$i} {padding-top:    vars.$base-padding * $i !important}
+  .pb-#{$i} {padding-bottom: vars.$base-padding * $i !important}
+  .pl-#{$i} {
+    padding-left: vars.$base-padding * $i !important;
+    // padding-block-start: vars.$base-padding * $i !important;
+  }
+  .pr-#{$i} {
+    padding-right: vars.$base-padding * $i !important;
+    // padding-block-end: vars.$base-padding * $i !important;
+  }
+
+  .m-#{$i}  {margin:        vars.$base-padding * $i !important}
+  .mt-#{$i} {margin-top:    vars.$base-padding * $i !important}
+  .mb-#{$i} {margin-bottom: vars.$base-padding * $i !important}
+  .ml-#{$i} {
+    margin-left: vars.$base-padding * $i !important;
+    // margin-block-start: vars.$base-padding * $i !important;
+  }
+  .mr-#{$i} {
+    margin-inline-end: vars.$base-padding * $i !important;
+    // margin-block-end: vars.$base-padding * $i !important;
+  }
+}
+
+
+.icon-hover{
+    padding:3px 6px;
+    border-radius: 5px;
+  &:hover{
+    background-color: vars.$color--lighter-gray;
+  }
+}
+.no-selection {
+  @include mix.no-selection;
+}

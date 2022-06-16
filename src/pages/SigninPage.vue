@@ -1,29 +1,103 @@
+<script lang="ts">
+  import { ref } from "vue";
+  import { useI18n } from "vue-i18n";
+
+  export default {
+    // props: {
+    //   title: String
+    // },
+    // setup(props) {
+    setup() {
+      const loading = ref(false);
+      const title = "Some title";
+      const { t } = useI18n();
+
+      const form = ref({
+        email: "",
+        password: "",
+        remember_me: false
+      });
+
+      return {
+        title,
+        loading,
+        form,
+        t
+      }
+    },
+    methods: {
+      toggleLoading () {
+        this.loading = !this.loading;
+      },
+
+      onSubmit (e) {
+        this.toggleLoading();
+        e.preventDefault();
+
+        setTimeout(() => {
+          this.toggleLoading();
+        }, 1200)
+        console.log(this.form);
+      }
+    }
+  }
+</script>
+
 <template>
+  <section class="page">
 
-  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
-    <div class="text-center mb-5">
-      <img src="images/blocks/logos/hyper.svg" alt="Image" height="50" class="mb-3">
-      <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
-      <span class="text-600 font-medium line-height-3">Don't have an account?</span>
-      <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Create today!</a>
-    </div>
-
-    <div>
-      <label for="email1" class="block text-900 font-medium mb-2">Email</label>
-      <InputText id="email1" type="text" class="w-full mb-3" />
-
-      <label for="password1" class="block text-900 font-medium mb-2">Password</label>
-      <InputText id="password1" type="password" class="w-full mb-3" />
-
-      <div class="flex align-items-center justify-content-between mb-6">
-        <div class="flex align-items-center">
-          <Checkbox id="rememberme1" :binary="true" v-model="checked" class="mr-2"></Checkbox>
-          <label for="rememberme1">Remember me</label>
+    <div class="signin-form-wrapper">
+      <h3 class="text-bold pb-2">
+        {{ $t('pages.signin.title') }}
+      </h3>
+      <p>{{ $t('pages.signin.subtitle') }}</p>
+      <form @submit="(e) => onSubmit(e)" class="signin-form">
+        <div class="pb-4">
+          <it-input
+            v-model="form.email"
+            :label-top="$t('user.email')"
+            :placeholder="$t('user.email')"
+          />
         </div>
-        <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
-      </div>
+        <div class="pb-4">
+          <it-input
+            v-model="form.password"
+            :label-top="$t('user.password')"
+            :placeholder="$t('user.password')"
+          />
+        </div>
+        <div class="pb-4">
+          <it-checkbox
+            type="primary"
+            :label="$t('pages.signin.remember_me')"
+            v-model="form.remember_me"
+          />
+        </div>
+        <footer class="form-footer">
+          <it-button
+            :loading="loading"
+            type="primary"
+            block
+          >
+            {{ $t('app.signin') }}
+          </it-button>
+        </footer>
 
-      <Button label="Sign In" icon="pi pi-user" class="w-full"></Button>
+        <div class="row pt-4 pr-1 pl-1">
+          <div class="col-xs-6">
+            <RouterLink to="/restore-password">
+              {{ $t('app.forgot_password') }}
+            </RouterLink>
+          </div>
+          <div class="col-xs-6 text-right">
+            <RouterLink to="/signup">
+              {{ $t('app.signup') }}
+            </RouterLink>
+          </div>
+        </div>
+
+      </form>
     </div>
-  </div>
+
+  </section>
 </template>
