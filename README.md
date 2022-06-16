@@ -1,6 +1,13 @@
-# goodsite
+# Goodsite
 
-This template should help get you started developing with Vue 3 in Vite.
+Video hosting & streaming platform frontend application.
+
+It based on Vue3 and it's ecosystem.
+
+## Used kits
+
+* Flexbox grid[http://flexboxgrid.com]
+* Equal UI [https://quatrochan.github.io/Equal/]
 
 ## Recommended IDE Setup
 
