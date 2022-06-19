@@ -1,53 +1,122 @@
-<script setup lang="ts">
-  import { PostCard } from "@/components/post";
+<script lang="ts">
+  import { PostCard } from "@/components/shared/post";
+  import { ref, onMounted } from "vue";
+  import { useI18n } from "vue-i18n";
 
-  const videoItem = {
-    id: 1,
-    title: "Some title here",
-    description: "Some sort of description, with many words",
-    author: "John Sina",
-    channel: "sina-burns",
-    likesCount: 300,
-    viewsCount: 1200,
-    runtime: 3400,
-    previewUrl: "https://garderobus.ru/wp-content/uploads/2019/09/post_5d8c2c049640e.jpeg"
-  };
-  const videoList = [];
+  export default {
+    components: {
+      PostCard
+    },
+    setup() {
+      const videoList = ref([]);
+      const loading = ref(false);
+      const title = "Some title";
+      const postTemplate = {
+        id: 1,
+        title: "",
+        description: "",
+        previewUrl: "",
+        author: "New author",
+        channel: "New channel",
+        likesCount: 300,
+        viewsCount: 1800,
+        runtime: 1800,
+      };
+      const { t } = useI18n();
 
-  const random = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min);
-  }
+      /**
+       * Fetch synthetic data
+       */
+      const fetchData = async () => {
+        loading.value = true;
+        try {
+          const url = 'https://jsonplaceholder.typicode.com/albums/1/photos';
+          const response = await fetch(url);
+          const json = await response.json();
 
-  for (let i = 1; i <= 32; i++) {
-    const runtime = random(3*60, 12*60);
-    videoList.push({...videoItem, id: i, runtime})
+          json.forEach(item => {
+            videoList.value.push({
+              ...postTemplate,
+              id: item.id,
+              title: item.title,
+              previewUrl: `https://picsum.photos/640/360?random=${item.id}`, // item.thumbnailUrl
+            })
+          })
+        }
+        catch(error) {
+          throw new Error(error);
+        }
+        finally {
+          loading.value = false;
+        }
+      };
+
+      onMounted(async () => {
+        fetchData();
+      });
+
+      return {
+        videoList,
+        loading,
+        t
+      }
+    },
   }
 </script>
 
 <template>
-  <div class="row p-0 m-0">
-    <aside class="col-sm-2">
-
-    </aside>
-    <section class="col-sm-10">
-      <div class="row pt-6">
-
-        <div v-for="video in videoList" :key="video.id" class="col-xs-3">
-          <PostCard
-            :id="video.id"
-            :title="video.title"
-            :description="video.description"
-            :previewUrl="video.previewUrl"
-            :author="video.author"
-            :channel="video.channel"
-            :likesCount="video.likesCount"
-            :viewsCount="video.viewsCount"
-            :runtime="video.runtime"
-          />
-        </div>
-      </div>
-    </section>
+  <div class="">
+    <div v-for="video in videoList" :key="video.id" class="">
+      <PostCard
+        :id="video.id"
+        :title="video.title"
+        :description="video.description"
+        :previewUrl="video.previewUrl"
+        :author="video.author"
+        :channel="video.channel"
+        :likesCount="video.likesCount"
+        :viewsCount="video.viewsCount"
+        :runtime="video.runtime"
+      />
+    </div>
   </div>
 </template>
+
+<style lang="scss">
+  .xh-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  }
+
+  /* Custom, iPhone Retina */
+  @media only screen and (min-width : 320px) {
+    .xh-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  /* Extra Small Devices, Phones */
+  @media only screen and (min-width : 480px) {
+    .xh-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  /* Small Devices, Tablets */
+  @media only screen and (min-width : 768px) {
+    .xh-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width : 992px) {
+    .xh-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width : 1200px) {
+    .xh-grid {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+</style>

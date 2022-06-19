@@ -1,8 +1,3 @@
-/* eslint-disable */
-/* eslint-disable */
-
-// import { locale } from '$lib/services/i18n';
-
 /**
  * Helpers to work with date & time
  */

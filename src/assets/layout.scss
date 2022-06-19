@@ -1,0 +1,25 @@
+body {
+  overflow-y: scroll;
+  min-height: calc(100vh - var(--header-height));
+}
+* {box-sizing: border-box; }
+
+.main-container {
+  display: flex;
+  min-height: 100%;
+
+  .sidebar-col,
+  .main-col {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .sidebar-col {
+    padding: 0;
+    width: 350px;
+  }
+
+  .main-col {
+    width: auto;
+    .main-content {}
+  }
+}

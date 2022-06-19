@@ -2468,6 +2468,11 @@
   dependencies:
     "@vue/devtools-api" "^6.0.0"
 
+"vue-skeletor@^1.0.6":
+  "integrity" "sha512-ER4vHlFSXCW3ixK2DlczUE6CZliHsn4d2TvZ9/26C6Oq8zoyEY23BsqweMPtF8QULSz1+G5m2New1BwKNVOZhQ=="
+  "resolved" "https://registry.npmjs.org/vue-skeletor/-/vue-skeletor-1.0.6.tgz"
+  "version" "1.0.6"
+
 "vue-tsc@^0.35.2":
   "integrity" "sha512-aqY16VlODHzqtKGUkqdumNpH+s5ABCkufRyvMKQlL/mua+N2DfSVnHufzSNNUMr7vmOO0YsNg27jsspBMq4iGA=="
   "resolved" "https://registry.npmjs.org/vue-tsc/-/vue-tsc-0.35.2.tgz"

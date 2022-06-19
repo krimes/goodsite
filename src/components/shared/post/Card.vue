@@ -1,4 +1,7 @@
 <script lang="ts">
+  // Styles
+  import "./Card.scss";
+
   import { useI18n } from "vue-i18n";
   import { datetime as datetimeHelper } from "@/helpers/datetime";
 
@@ -6,7 +9,6 @@
     props: {
       id: Number,
       title: String,
-      description: String,
       previewUrl: String,
       channel: String,
       author: String,
@@ -33,7 +35,7 @@
       <span class="post-runtime">
         {{ humanRuntime }}
       </span>
-      <a :href="`/post/${id}`">
+      <a :href="`/post/${id}`" class="post-picture-url">
         <img
           :src="previewUrl"
           :alt="title"
@@ -54,7 +56,7 @@
         <div class="post-info">
           <a :href="`/post/${id}`">
             <h4>{{ title }}</h4>
-            <p>{{ description }}</p>
+            <p>{{ author }}</p>
           </a>
         </div>
         <div class="post-summary">

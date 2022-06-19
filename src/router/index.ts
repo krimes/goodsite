@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '@/pages/HomePage.vue';
+import { AuthLayout } from '@/layouts';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,33 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('@/pages/HomePage.vue'),
+    },
+    {
+      path: '/post/:id',
+      component: () => import('../pages/PostPage.vue'),
+    },
+    {
+      path: '/categories',
+      name: 'categories',
+      component: () => import('../pages/categories/List.vue'),
+      children: [
+        {
+          path: '/categories/:id',
+          component: () => import('../pages/categories/Id.vue'),
+        },
+      ],
+    },
+    {
+      path: '/actors',
+      name: 'actors',
+      component: () => import('../pages/actors/List.vue'),
+      children: [
+        {
+          path: '/actors/:id',
+          component: () => import('../pages/actors/Id.vue'),
+        },
+      ],
     },
     {
       path: '/about',
@@ -15,31 +41,24 @@ const router = createRouter({
       component: () => import('../pages/AboutPage.vue'),
     },
     {
-      path: '/category',
-      name: 'category',
-      component: () => import('../pages/CategoryPage.vue'),
-    },
-    {
       path: '/signup',
       name: 'signup',
       component: () => import('../pages/SignupPage.vue'),
+      meta: { layout: AuthLayout }
     },
     {
       path: '/signin',
       name: 'signin',
       component: () => import('../pages/SigninPage.vue'),
+      meta: { layout: AuthLayout }
     },
     {
       path: '/restore-password',
       name: 'forgotPassword',
       component: () => import('../pages/ForgottPasswordPage.vue'),
+      meta: { layout: AuthLayout }
     }
   ]
 });
-
-// router.beforeEach((to, from, next) => {
-//   const lang = to.params.lang
-//   loadLanguageAsync(lang).then(() => next())
-// })
 
 export default router

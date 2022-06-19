@@ -22,6 +22,18 @@
     },
     "signup": {
       "title": "Sign up"
+    },
+    "home": {
+      "title": "Home"
+    },
+    "categories": {
+      "title": "Categories"
+    },
+    "actors": {
+      "title": "Actors"
+    },
+    "about": {
+      "title": "About"
     }
   }
 }

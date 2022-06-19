@@ -1,0 +1,20 @@
+.cmm {
+  &-wrapper {
+    display: flex;
+    padding: 0 0 16px 0;
+
+    &:nth-child(1) {
+      flex: 0 1 100px;
+    }
+  }
+  &-avatar {
+    padding: 0 4px;
+  }
+  &-body {
+    padding: 0 0 0 8px;
+  }
+  &-author {
+    font-weight: 500;
+    padding: 2px 0 4px 0;
+  }
+}

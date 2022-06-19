@@ -2,7 +2,7 @@ import { createI18n } from 'vue-i18n'
 
 export const DEFAULT_LOCALE = "en";
 const LOADED_LOCALES = [DEFAULT_LOCALE];
-const LOCALE_FILE_URL = `./locales/{locale}.json`;
+const LOCALE_FILE_URL = `/locales/{locale}.json`;
 const SUPPORTED_LOCALES = ["en", "ru"];
 
 /**
