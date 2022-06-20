@@ -8,7 +8,6 @@
   export default {
     setup() {
       const menu = [
-          {id: 1, link: "/", tKey: "home"},
           {id: 2, link: "/categories", tKey: "categories"},
           {id: 2, link: "/actors", tKey: "actors"},
           {id: 3, link: "/about", tKey: "about"},

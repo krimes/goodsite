@@ -1,12 +1,8 @@
 <script lang="ts">
   import { ref } from "vue";
-  import axios from "axios";
-
+  import { useRouter } from "vue-router";
   import { useI18n } from "vue-i18n";
-  import { userApi } from "@/api"
-
-  const DOMAIN = import.meta.env.VITE_DOMAIN;
-  const API_VERSION = import.meta.env.VITE_API_VERSION;
+  import { userApi } from "@/api";
 
   export default {
     // props: {
@@ -17,6 +13,7 @@
       const loading = ref(false);
       const title = "Some title";
       const { t } = useI18n();
+      const router = useRouter();
 
       const form = ref({
         email: "",
@@ -34,8 +31,14 @@
 
         try {
           const { email, password } = form.value;
-          const res1 = await userApi.getCsrfCookie();
-          const res2 = await userApi.signin(email, password);
+          const csrfResponse = await userApi.getCsrfCookie();
+
+          const response  = await userApi.signin(email, password);
+          const { token, user } = response.data;
+          localStorage.setItem('token', token);
+          localStorage.setItem('user', JSON.stringify(user));
+
+          router.push({name: 'profile'});
         }
         catch(error) {
           throw new Error(error);
@@ -64,8 +67,7 @@
         {{ $t('pages.signin.title') }}
       </h3>
       <p>{{ $t('pages.signin.subtitle') }}</p>
-      <div class="signin-form">
-      <!-- <form @submit="(e) => onSubmit(e)" class="signin-form"> -->
+      <form @submit="(e) => onSubmit(e)" class="signin-form">
         <div class="pb-4">
           <it-input
             v-model="form.email"
@@ -92,8 +94,9 @@
             :loading="loading"
             type="primary"
             block
-            @click="e => onSubmit(e)"
           >
+            <!-- @click="e => onSubmit(e)" -->
+
             {{ $t('app.signin') }}
           </it-button>
         </footer>
@@ -111,8 +114,7 @@
           </div>
         </div>
 
-      </div>
-      <!-- </form> -->
+      </form>
     </div>
 
   </section>

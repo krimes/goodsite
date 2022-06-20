@@ -23,6 +23,9 @@
     "signup": {
       "title": "Sign up"
     },
+    "profile": {
+      "title": "Profile"
+    },
     "home": {
       "title": "Home"
     },

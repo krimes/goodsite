@@ -20,6 +20,7 @@ const router = createRouter({
       children: [
         {
           path: '/categories/:id',
+          name: 'categories-id',
           component: () => import('../pages/categories/Id.vue'),
         },
       ],
@@ -34,6 +35,11 @@ const router = createRouter({
           component: () => import('../pages/actors/Id.vue'),
         },
       ],
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('../pages/profile/IndexPage.vue'),
     },
     {
       path: '/about',
