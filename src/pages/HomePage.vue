@@ -65,8 +65,8 @@
 </script>
 
 <template>
-  <div class="">
-    <div v-for="video in videoList" :key="video.id" class="">
+  <div class="grid grid-cols-4 gap-3 px-2">
+    <div v-for="video in videoList" :key="video.id">
       <PostCard
         :id="video.id"
         :title="video.title"

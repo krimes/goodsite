@@ -1,6 +1,12 @@
 <script lang="ts">
   import { ref } from "vue";
+  import axios from "axios";
+
   import { useI18n } from "vue-i18n";
+  import { userApi } from "@/api"
+
+  const DOMAIN = import.meta.env.VITE_DOMAIN;
+  const API_VERSION = import.meta.env.VITE_API_VERSION;
 
   export default {
     // props: {
@@ -18,28 +24,35 @@
         remember_me: false
       });
 
+      const toggleLoading = () => {
+        loading.value = !loading.value;
+      };
+
+      const onSubmit = async (e) =>  {
+        toggleLoading();
+        e.preventDefault();
+
+        try {
+          const { email, password } = form.value;
+          const res1 = await userApi.getCsrfCookie();
+          const res2 = await userApi.signin(email, password);
+        }
+        catch(error) {
+          throw new Error(error);
+        }
+        finally {
+          toggleLoading();
+        }
+      };
+
       return {
+        onSubmit,
         title,
         loading,
         form,
         t
       }
     },
-    methods: {
-      toggleLoading () {
-        this.loading = !this.loading;
-      },
-
-      onSubmit (e) {
-        this.toggleLoading();
-        e.preventDefault();
-
-        setTimeout(() => {
-          this.toggleLoading();
-        }, 1200)
-        console.log(this.form);
-      }
-    }
   }
 </script>
 
@@ -51,7 +64,8 @@
         {{ $t('pages.signin.title') }}
       </h3>
       <p>{{ $t('pages.signin.subtitle') }}</p>
-      <form @submit="(e) => onSubmit(e)" class="signin-form">
+      <div class="signin-form">
+      <!-- <form @submit="(e) => onSubmit(e)" class="signin-form"> -->
         <div class="pb-4">
           <it-input
             v-model="form.email"
@@ -78,25 +92,27 @@
             :loading="loading"
             type="primary"
             block
+            @click="e => onSubmit(e)"
           >
             {{ $t('app.signin') }}
           </it-button>
         </footer>
 
-        <div class="row pt-4 pr-1 pl-1">
-          <div class="col-xs-6">
+        <div class="columns-2 pt-4 pr-1 pl-1">
+          <div>
             <RouterLink to="/restore-password">
               {{ $t('app.forgot_password') }}
             </RouterLink>
           </div>
-          <div class="col-xs-6 text-right">
+          <div class="text-right">
             <RouterLink to="/signup">
               {{ $t('app.signup') }}
             </RouterLink>
           </div>
         </div>
 
-      </form>
+      </div>
+      <!-- </form> -->
     </div>
 
   </section>

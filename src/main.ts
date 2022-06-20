@@ -19,7 +19,7 @@ catch (error) {
 import App from './App.vue'
 import router from './router'
 
-import { Button, Alert, Switch, Checkbox, Icon, Input, Avatar } from 'equal-vue'
+import { Button, Alert, Switch, Checkbox, Icon, Input, Avatar } from 'equal-vue';
 import 'equal-vue/dist/style.css'
 
 /* init app */

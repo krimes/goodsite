@@ -4,7 +4,14 @@
   import { RouterView } from 'vue-router';
 
   // Components
-  import { Header, Sidebar } from '@/components/structure'
+  import { Header, Sidebar } from '@/components/structure';
+</script>
+<script lang="ts">
+  // export default {
+  //   components: {
+  //     PostCard
+  //   }
+  // }
 </script>
 
 
@@ -13,14 +20,13 @@
     <Header />
 
     <div class="main-container">
-      <div class="sidebar-col">
+      <div class="main-sidebar">
         <Sidebar />
       </div>
-      <section class="main-col">
-        <div class="main-content">
-          <RouterView />
-        </div>
-      </section>
+      <div class="main-content">
+        <RouterView />
+      </div>
     </div>
+
   </div>
 </template>

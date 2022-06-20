@@ -1,0 +1,11 @@
+.main-container {
+  @apply flex;
+  @apply flex-row;
+
+  .main-sidebar {
+    flex-basis: 200px;
+  }
+  .main-content {
+    flex-basis: calc(100vw - 200px);
+  }
+}
