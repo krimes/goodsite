@@ -2,14 +2,16 @@
   import { ref } from "vue";
   import { useRouter } from "vue-router";
   import { useI18n } from "vue-i18n";
-  import { userApi } from "@/api";
+  import { useUserStore } from "@/stores/user";
 
   export default {
     setup() {
       const loading = ref(false);
       const title = "Some title";
+
       const { t } = useI18n();
       const router = useRouter();
+      const userStore = useUserStore();
 
       const form = ref({
         email: "",
@@ -31,13 +33,13 @@
         e.preventDefault();
 
         try {
+          // TODO: replace to const { value: formValue } = form;
           const { email, password } = form.value;
-          const csrfResponse = await userApi.getCsrfCookie();
 
-          const response  = await userApi.signin(email, password);
-          const { token, user } = response.data;
-          localStorage.setItem('token', token);
-          localStorage.setItem('user', JSON.stringify(user));
+          await userStore.getCrfs()
+
+          // TODO: replace to .signin(formValue)
+          await userStore.signin({email, password})
 
           router.push({name: 'profile'});
         }
