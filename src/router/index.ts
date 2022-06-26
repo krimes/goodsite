@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { AuthLayout } from '@/layouts';
+import { ProfileSidebar } from '@/components/structure';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,7 +40,28 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'profile',
-      component: () => import('../pages/profile/IndexPage.vue'),
+      component: () => import('../pages/profile/Index.vue'),
+      meta: { sidebar: ProfileSidebar },
+      children: [
+        {
+          path: '/profile/main-info',
+          name: 'profile-main-info',
+          component: () => import('../pages/profile/MainInfoPage.vue'),
+        },
+        {
+          path: '/profile/history',
+          name: 'profile-history',
+          component: () => import('../pages/profile/HistoryPage.vue'),
+        }, {
+          path: '/profile/my-videos',
+          name: 'profile-my-videos',
+          component: () => import('../pages/profile/MyVideosPage.vue'),
+        }, {
+          path: '/profile/my-comments',
+          name: 'profile-my-comments',
+          component: () => import('../pages/profile/MyCommentsPage.vue'),
+        },
+      ],
     },
     {
       path: '/about',

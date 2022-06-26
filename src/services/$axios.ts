@@ -35,11 +35,12 @@ const $axios = axios.create({
  * Pre config of axios request
  */
 $axios.interceptors.request.use((config) => {
+  if (localStorage?.token) {
+    const token = localStorage.token;
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   // if (lang_data) {
   //   config.headers["Accept-Language"] = lang_data;
-  // }
-  // if (user?.token) {
-  //   config.headers.Authorization = `Bearer ${user.token}`;
   // }
   return config;
 });

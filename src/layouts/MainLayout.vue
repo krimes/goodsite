@@ -6,14 +6,6 @@
   // Components
   import { Header, Sidebar } from '@/components/structure';
 </script>
-<script lang="ts">
-  // export default {
-  //   components: {
-  //     PostCard
-  //   }
-  // }
-</script>
-
 
 <template>
   <div class="main-layout">
@@ -21,7 +13,7 @@
 
     <div class="main-container">
       <div class="main-sidebar">
-        <Sidebar />
+        <component :is="$route.meta.sidebar || Sidebar" />
       </div>
       <div class="main-content">
         <RouterView />

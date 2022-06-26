@@ -10,6 +10,10 @@
   },
   "user": {
     "email": "Email",
+    "phone": "Phone",
+    "name": "Name",
+    "first_name": "First name",
+    "last_name": "Last name",
     "password": "Password",
     "nickname": "Nick name",
     "avatar": "Avatar"
@@ -25,6 +29,15 @@
     },
     "profile": {
       "title": "Profile"
+    },
+    "history": {
+      "title": "Viewing history"
+    },
+    "my_videos": {
+      "title": "My videos"
+    },
+    "my_comments": {
+      "title": "My comments"
     },
     "home": {
       "title": "Home"

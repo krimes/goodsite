@@ -1,5 +1,10 @@
+<script setup lang="ts">
+  // Components
+  import { Page } from "@/components/structure";
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an Actors page</h1>
-  </div>
+  <Page class="page-actor-list">
+    <h1>This is a Actors page</h1>
+  </Page>
 </template>

@@ -27,7 +27,7 @@
       /**
        * Get post data
        */
-      const getPostData = async () => {
+      const getPostData = async (): Promise<any> => {
         loading.value = true;
         try {
           const url = `https://jsonplaceholder.typicode.com/posts/${postId}`;
@@ -35,7 +35,7 @@
           const json = await response.json();
           post.value = json;
         }
-        catch(error) {
+        catch(error: any) {
           throw new Error(error);
         }
         finally {
@@ -46,14 +46,14 @@
       /**
        * Get post
        */
-      const getPostComments = async () => {
+      const getPostComments = async (): Promise<any> => {
         try {
           const url = `https://jsonplaceholder.typicode.com/posts/${postId}/comments`;
           const response = await fetch(url);
           const json = await response.json();
           comments.value.list = json;
         }
-        catch(error) {
+        catch (error: any) {
           throw new Error(error);
         }
         finally {

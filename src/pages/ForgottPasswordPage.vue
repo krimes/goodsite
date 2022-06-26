@@ -3,10 +3,6 @@
   import { useI18n } from "vue-i18n";
 
   export default {
-    // props: {
-    //   title: String
-    // },
-    // setup(props) {
     setup() {
       const loading = ref(false);
       const title = "Some title";
@@ -18,6 +14,26 @@
         remember_me: false
       });
 
+      /**
+       * Toggle loading
+       */
+      const toggleLoading = (): void => {
+        loading.value = ! loading.value;
+      };
+
+      /**
+       * On signup form submit
+       * @param {Event} e
+       */
+      const onSubmit = (e: Event): void => {
+        toggleLoading();
+        e.preventDefault();
+
+        setTimeout(() => {
+          toggleLoading();
+        }, 1200)
+      }
+
       return {
         title,
         loading,
@@ -25,21 +41,6 @@
         t
       }
     },
-    methods: {
-      toggleLoading () {
-        this.loading = !this.loading;
-      },
-
-      onSubmit (e) {
-        this.toggleLoading();
-        e.preventDefault();
-
-        setTimeout(() => {
-          this.toggleLoading();
-        }, 1200)
-        console.log(this.form);
-      }
-    }
   }
 </script>
 

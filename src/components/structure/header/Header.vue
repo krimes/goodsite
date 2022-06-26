@@ -19,6 +19,9 @@
         ];
       const { t } = useI18n();
 
+      /**
+       * Get menu
+       */
       const getMenu = () => {
         if (localStorage.token) {
           return menu.filter(item => !guestItems.includes(item.id));

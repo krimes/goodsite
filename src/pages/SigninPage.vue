@@ -5,10 +5,6 @@
   import { userApi } from "@/api";
 
   export default {
-    // props: {
-    //   title: String
-    // },
-    // setup(props) {
     setup() {
       const loading = ref(false);
       const title = "Some title";
@@ -25,7 +21,12 @@
         loading.value = !loading.value;
       };
 
-      const onSubmit = async (e) =>  {
+      /**
+       * On submit sign in form
+       * @param {Event} e
+       * @throws {Error}
+       */
+      const onSubmit = async (e: Event): Promise<any> =>  {
         toggleLoading();
         e.preventDefault();
 
@@ -40,7 +41,7 @@
 
           router.push({name: 'profile'});
         }
-        catch(error) {
+        catch (error: any) {
           throw new Error(error);
         }
         finally {
@@ -95,8 +96,6 @@
             type="primary"
             block
           >
-            <!-- @click="e => onSubmit(e)" -->
-
             {{ $t('app.signin') }}
           </it-button>
         </footer>

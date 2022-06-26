@@ -1,5 +1,10 @@
+<script setup lang="ts">
+  // Components
+  import { Page } from "@/components/structure";
+</script>
+
 <template>
-  <div class="about">
+  <Page class="page-category-id">
     <h1>This is a Categories Ids page</h1>
-  </div>
+  </Page>
 </template>

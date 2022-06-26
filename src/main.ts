@@ -4,22 +4,40 @@ import { createI18nInstance, loadLocale, DEFAULT_LOCALE } from './services/i18n'
 
 // Langauge settings
 const i18n = createI18nInstance();
-let locale = document?.querySelector('html')?.getAttribute('lang');
-locale = (!locale) ? DEFAULT_LOCALE : locale;
+const htmlLocale = document?.querySelector('html')?.getAttribute('lang');
+const locale = (!htmlLocale) ? DEFAULT_LOCALE : htmlLocale;
 
-try {
-  const messages = await loadLocale(i18n, locale);
-  i18n.global.setLocaleMessage(DEFAULT_LOCALE, messages);
+/**
+ * Init default locale
+ */
+async function initDefaultLocale(): Promise<any> {
+  try {
+    const messages = await loadLocale(i18n, locale);
+    i18n.global.setLocaleMessage(DEFAULT_LOCALE, messages);
+  }
+  catch (error: any) {
+    throw new Error(error);
+  }
 }
-catch (error) {
-  throw new Error(error);
-}
+
+initDefaultLocale();
+
 
 /* component import */
 import App from './App.vue'
 import router from './router'
 
-import { Button, Alert, Switch, Checkbox, Icon, Input, Avatar } from 'equal-vue';
+import Equal from 'equal-vue';
+// import {
+//   Alert,
+//   Avatar,
+//   Button,
+//   Checkbox,
+//   Dropdown,
+//   Icon,
+//   Input,
+//   Switch
+// } from 'equal-vue';
 import 'equal-vue/dist/style.css'
 
 /* init app */
@@ -29,13 +47,16 @@ app.use(createPinia());
 app.use(router);
 app.use(i18n);
 
-app.use(Button)
-   .use(Avatar)
-   .use(Input)
-   .use(Alert)
-   .use(Icon)
-   .use(Checkbox)
-   .use(Switch);
+app.use(Equal);
+
+// app.use(Alert)
+//    .use(Avatar)
+//    .use(Button)
+//    .use(Checkbox)
+//    .use(Dropdown)
+//    .use(Icon)
+//    .use(Input)
+//    .use(Switch);
 
 // app.component('Button', Button);
 

@@ -3,7 +3,7 @@ import { createI18n } from 'vue-i18n'
 export const DEFAULT_LOCALE = "en";
 const LOADED_LOCALES = [DEFAULT_LOCALE];
 const LOCALE_FILE_URL = `/locales/{locale}.json`;
-const SUPPORTED_LOCALES = ["en", "ru"];
+// const SUPPORTED_LOCALES = ["en", "ru"];
 
 /**
  *
@@ -22,8 +22,9 @@ export const createI18nInstance = (lang = DEFAULT_LOCALE) => {
  * @param i18n
  * @param {String} lang
  * @returns {Promise}
+ * TODO: implement locale caching & changing
  */
-export const loadLocale = async (i18n, lang = DEFAULT_LOCALE) => {
+export const loadLocale = async (i18n: any, lang = DEFAULT_LOCALE): Promise<any> => {
   // If the same language
   if (i18n.locale === lang) {
     return Promise.resolve(i18n.global?.getLocaleMessage());
