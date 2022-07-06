@@ -57,6 +57,10 @@ const router = createRouter({
           name: 'profile-my-videos',
           component: () => import('../pages/profile/MyVideosPage.vue'),
         }, {
+          path: '/profile/studio',
+          name: 'profile-studio',
+          component: () => import('../pages/profile/studio/Index.vue'),
+        }, {
           path: '/profile/my-comments',
           name: 'profile-my-comments',
           component: () => import('../pages/profile/MyCommentsPage.vue'),

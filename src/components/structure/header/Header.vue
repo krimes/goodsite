@@ -4,11 +4,13 @@
 
   // Hooks
   import { useI18n } from "vue-i18n";
+  import { useUserStore } from "@/stores/user";
 
   export default {
     setup() {
       const guestItems = [3,4];
       const userItems = [5];
+      const userStore = useUserStore();
 
       const menu = [
           {id: 1, link: "/", tKey: "home"},
@@ -23,10 +25,8 @@
        * Get menu
        */
       const getMenu = () => {
-        if (localStorage.token) {
-          return menu.filter(item => !guestItems.includes(item.id));
-        }
-        return menu.filter(item => !userItems.includes(item.id));
+        const filterGroup = (userStore.isLoggedIn) ? guestItems : userItems;
+        return menu.filter(item => !filterGroup.includes(item.id));
       };
 
       return {

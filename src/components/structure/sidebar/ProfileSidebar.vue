@@ -9,6 +9,7 @@
     {id: 1, link: "/profile/main-info", tKey: "profile"},
     {id: 2, link: "/profile/history", tKey: "history"},
     {id: 3, link: "/profile/my-videos", tKey: "my_videos"},
+    {id: 3, link: "/profile/studio", tKey: "studio"},
     {id: 4, link: "/profile/my-comments", tKey: "my_comments"},
   ];
   const { t } = useI18n();

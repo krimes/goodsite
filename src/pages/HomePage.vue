@@ -32,13 +32,12 @@
           const url = 'https://jsonplaceholder.typicode.com/albums/1/photos';
           const response = await fetch(url);
           const json = await response.json();
-          console.log(json)
-          videoList.value = json.map(item => {
+          videoList.value = json.map(photo => {
             return {
               ...postTemplate,
-              id: item.id,
-              title: item.title,
-              previewUrl: `https://picsum.photos/640/360?random=${item.id}`, // item.thumbnailUrl
+              id: photo.id,
+              title: photo.title,
+              previewUrl: `https://picsum.photos/640/360?random=${photo.id}`, // item.thumbnailUrl
             }
           });
         }

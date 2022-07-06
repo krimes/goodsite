@@ -15,6 +15,10 @@ export const useUserStore = defineStore('user', {
         const { firstName } = <User>this.user;
         return `${firstName}`;
       }
+    },
+
+    isLoggedIn () {
+      return (this.user?.id && this.token) ? true : false
     }
   },
 

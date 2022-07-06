@@ -28,17 +28,8 @@ import App from './App.vue'
 import router from './router'
 
 import Equal from 'equal-vue';
-// import {
-//   Alert,
-//   Avatar,
-//   Button,
-//   Checkbox,
-//   Dropdown,
-//   Icon,
-//   Input,
-//   Switch
-// } from 'equal-vue';
 import 'equal-vue/dist/style.css'
+
 
 /* init app */
 const app = createApp(App)

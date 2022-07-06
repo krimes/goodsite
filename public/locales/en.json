@@ -6,6 +6,7 @@
     "back": "Back",
     "signin": "Sign in",
     "signup": "Sign up",
+    "upload": "Upload",
     "forgot_password": "Forgot password"
   },
   "user": {
@@ -35,6 +36,9 @@
     },
     "my_videos": {
       "title": "My videos"
+    },
+    "studio": {
+      "title": "Studio editor"
     },
     "my_comments": {
       "title": "My comments"

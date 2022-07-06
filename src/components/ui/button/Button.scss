@@ -1,0 +1,26 @@
+.xx-button {
+  @apply px-5;
+  @apply py-1.5;
+  @apply rounded-md;
+  @apply transition-all;
+  font-weight: 600;
+
+  &.xx-button-default {
+    color: #fff;
+    @apply bg-slate-700;
+
+    &:hover {
+      @apply bg-slate-600;
+    }
+  }
+
+  &.xx-button-primary {
+    color: #fff;
+    @apply bg-indigo-500;
+
+    &:hover {
+      @apply bg-indigo-600;
+    }
+  }
+}
+
