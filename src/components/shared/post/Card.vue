@@ -9,12 +9,30 @@
     props: {
       id: Number,
       title: String,
-      previewUrl: String,
-      channel: String,
-      author: String,
-      likesCount: Number,
-      viewsCount: Number,
-      runtime: Number,
+      previewUrl: {
+        type: String,
+        default: `https://picsum.photos/640/360`, //?random=${item.id}`
+      },
+      channel: {
+        type: String,
+        default: "Some channel",
+      },
+      author: {
+        type: String,
+        default: "Some author",
+      },
+      likesCount: {
+        type: Number,
+        default: 0,
+      },
+      viewsCount: {
+        type: Number,
+        default: 0,
+      },
+      runtime: {
+        type: Number,
+        default: 0,
+      },
     },
     setup(props) {
       const { t } = useI18n();

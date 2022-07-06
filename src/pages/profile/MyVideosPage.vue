@@ -2,19 +2,70 @@
   // Hooks
   import { useI18n } from "vue-i18n";
   import { ref, onMounted } from "vue";
+  import { videoApi } from "@/api"
 
   // Components
   import { Page, Heading } from "@/components/structure";
   import { PostCard } from "@/components/shared/post";
+  import { Button } from "@/components/ui";
 
   const videoList = ref([]);
   const albumList = ref([]);
   const loading = ref(true);
+  const file: any = ref(null);
+  const modal = ref({
+    visible: false,
+    loading: false,
+  });
   const { t } = useI18n();
 
-  setTimeout(() => {
-    loading.value = false;
-  }, 1000)
+  onMounted(async () => {
+    loading.value = true;
+    try {
+      const response = await videoApi.list();
+      videoList.value = response.data.video_list;
+    }
+    catch (error: any) {
+      throw new Error(error);
+    }
+    finally {
+      loading.value = false;
+    }
+  });
+
+  /**
+   *
+   */
+  const toggleModal = () => {
+    modal.value.visible = !modal.value.visible;
+  }
+
+  /**
+   *
+   */
+  const handleFileUpload = (event: any) => {
+    file.value = event.target.files[0];
+  }
+
+  /**
+   *
+   */
+  const upload = async () => {
+    modal.value.loading = true;
+    const formData = new FormData();
+    formData.append('file', file.value);
+
+    try {
+      const response = await videoApi.upload(formData);
+      file.value = null;
+    }
+    catch (error: any) {
+      throw new Error(error);
+    }
+    finally {
+      modal.value.loading = false;
+    }
+  }
 </script>
 
 <template>
@@ -23,26 +74,51 @@
       {{ $t('pages.my_videos.title') }}
     </Heading>
 
-    <div class="toolbar flex">
-      <it-button type="primary" class="mr-2">
+    <div class="toolbar flex px-2 mb-4">
+      <RouterLink to="/profile/studio" class="xx-button">
         Upload new video
-      </it-button>
+      </RouterLink>
 
-      <it-dropdown
-        clickable
-        placement="bottom-right"
+      <!-- <el-button
+        type="primary"
+        @click="toggleModal()"
+        :disabled="loading"
       >
-        <it-button>Albums</it-button>
-        <template #menu>
-          <it-dropdown-menu>
-            <it-dropdown-item>Hello</it-dropdown-item>
-            <it-dropdown-item disabled>Disabled</it-dropdown-item>
-            <it-dropdown-item icon="cloud">Cloud</it-dropdown-item>
-            <it-dropdown-item divided>Divided</it-dropdown-item>
-          </it-dropdown-menu>
-        </template>
-      </it-dropdown>
+        Upload new video
+      </el-button> -->
+
     </div>
+
+
+    <it-modal
+      v-model="modal.visible"
+
+      width="60vw"
+    >
+      <template #header>
+        <h3 style="margin: 0">Header</h3>
+      </template>
+
+      <template #body>
+        <p>Select a file for uploading: </p>
+        <input
+          type="file"
+          @change="(e) => handleFileUpload(e)"
+        />
+        <p v-if="file">Selected file {{ file.name }}</p>
+      </template>
+
+      <template #actions>
+        <it-button
+          type="primary"
+          :disabled="modal.loading"
+          :loading="modal.loading"
+          @click="upload()"
+        >
+          Upload
+        </it-button>
+      </template>
+    </it-modal>
 
 
     <template v-if="loading">

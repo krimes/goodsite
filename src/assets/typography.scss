@@ -1,6 +1,7 @@
-body {
-  font-size: 12pt;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body,
+button, input, select, textarea {
+  font-size: var(--font-size);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1, h2, h3, h4 {

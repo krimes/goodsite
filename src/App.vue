@@ -21,7 +21,7 @@
 
       localStorage.setItem('user', JSON.stringify(user));
     }
-    catch (error) {
+    catch (error: any) {
       throw Error(error);
     }
   }

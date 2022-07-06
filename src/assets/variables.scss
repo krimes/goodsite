@@ -1,9 +1,12 @@
-
 /**
  * Base layout sizing
  */
 :root {
+  // Sizing
   --header-height: 40px;
+
+  // Fonts
+  --font-size: 11pt;
 
   // Colors
   --color-gray: rgb(179, 196, 219);
@@ -11,8 +14,9 @@
   --color-primary-light: rgb(129, 140, 248);
   --color-attention: rgb(219, 39, 119);
   --color-attention-pale: rgb(253, 242, 248);
-  --color-black: rgb(30, 41, 59);
+  --color-black: rgb(15 23 42);
   --color-black-dark: rgb(20, 29, 44);
 
   --text-color: var(--color-gray);
 }
+
