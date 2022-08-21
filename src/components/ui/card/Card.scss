@@ -1,0 +1,22 @@
+.xx-card {
+  @apply rounded-lg;
+  @apply bg-slate-800;
+  @apply ring-1 ring-slate-700;
+  @apply relative;
+
+  .xx-card-header {
+    @apply p-4;
+    @apply relative;
+  }
+
+  .xx-card-body {
+    @apply p-4;
+    @apply relative;
+  }
+
+  .xx-card-footer {
+    @apply p-4;
+    @apply border-t border-solid border-slate-700;
+    @apply relative;
+  }
+}
